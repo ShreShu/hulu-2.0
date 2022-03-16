@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import request from "./ApiCalls/request";
+import "./App.css";
+import { Header } from "./component/Header";
+import { Nav } from "./component/Nav";
+import { Results } from "./component/Results";
 
 function App() {
+  const [selectedOption, setselectedOption] = useState(request.fetchTrending);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {/* header */}
+      <Header />
+
+      {/* nav bar */}
+      <Nav setselectedOption={setselectedOption} />
+      {/* result */}
+      <Results selectedOption={selectedOption} />
     </div>
   );
 }
